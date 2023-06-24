@@ -23,12 +23,12 @@ const createReport = async (req, res) => {
 };
 
 const readAllReport = async (req, res) => {
-  const school = req.body.school;
+  const school = req.query.school;
 
   try {
     const post = await Report.findAll({ where: { school, check: false } });
 
-    return res.status(200).json(post);
+    return res.status(200).json({ postList: post });
   } catch (err) {
     res.status(404).json({
       messgae: "해당 데이터 없음",

@@ -1,4 +1,5 @@
 const express = require("express");
+const cors = require("cors");
 const app = express();
 const router = require("./routes");
 const { sequelize } = require("./models");
@@ -8,6 +9,12 @@ require("dotenv").config();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+
+const corsConfig = {
+  origin: "*",
+};
+
+app.use(cors(corsConfig));
 
 app.use("/", router);
 
